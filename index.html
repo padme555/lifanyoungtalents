@@ -1580,10 +1580,22 @@
         <!-- Performers Section -->
         <section class="section" id="performers">
             <div class="container">
-               <h2>
-            <span class="lang-en">Meet Our Performers</span>
-            <span class="lang-zh" style="display: none;">认识我们的演奏者</span>
-               </h2>
+               <h2 id="performers-title">Meet Our Performers</h2>
+
+              <div class="language-toggle">
+            <button
+                class="lang-btn active"
+                id="performers-en-btn"
+                onclick="switchPerformersLanguage('en')">
+                English
+            </button>
+            <button
+                class="lang-btn"
+                id="performers-zh-btn"
+                onclick="switchPerformersLanguage('zh')">
+                中文
+            </button>
+        </div>
                 <div class="performers-container">
                     <!-- Performer 1 -->
                     <div class="performer-card" data-performer="1">
@@ -2054,10 +2066,24 @@ Beethoven: Piano Sonata No. 27 in E Minor, Op. 90<br>
                                  src="images/fan.jpg"
                                  alt="Mr. Fan Li">
                         </div>
-                       <h2>
-                          <span class="lang-en">Mr. Fan Li 李帆</span>
-                          <span class="lang-zh" style="display: none;">李帆老师 Mr. Fan Li</span>
-                        </h2>
+                         <h2 class="teacher-name" id="teacher-title">
+                          Mr. Fan Li 李帆
+                          </h2>
+
+                          <div class="language-toggle">
+                            <button
+                               class="lang-btn active"
+                               id="teacher-en-btn"
+                            onclick="switchTeacherLanguage('en')">
+                            English
+                            </button>
+                            <button
+                              class="lang-btn"
+                              id="teacher-zh-btn"
+                               onclick="switchTeacherLanguage('zh')">
+                                中文
+                              </button>
+                        </div>
                         
                         <!-- Special Thanks -->
                         <p class="teacher-message">
@@ -2354,6 +2380,76 @@ Beethoven: Piano Sonata No. 27 in E Minor, Op. 90<br>
                 scrollCarousel(-1);
             }
         }
+        // ★★★★★ NEW: PERFORMERS LANGUAGE SWITCH ★★★★★
+function switchPerformersLanguage(lang) {
+
+    const title = document.getElementById('performers-title');
+    const enBtn = document.getElementById('performers-en-btn');
+    const zhBtn = document.getElementById('performers-zh-btn');
+
+    if (lang === 'en') {
+
+        title.textContent = 'Meet Our Performers';
+
+        document.querySelectorAll('#performers .performer-en')
+            .forEach(el => el.style.display = '');
+
+        document.querySelectorAll('#performers .performer-zh')
+            .forEach(el => el.style.display = 'none');
+
+        enBtn.classList.add('active');
+        zhBtn.classList.remove('active');
+
+    } else {
+
+        title.textContent = '认识我们的演奏者';
+
+        document.querySelectorAll('#performers .performer-en')
+            .forEach(el => el.style.display = 'none');
+
+        document.querySelectorAll('#performers .performer-zh')
+            .forEach(el => el.style.display = '');
+
+        enBtn.classList.remove('active');
+        zhBtn.classList.add('active');
+    }
+}
+        // ★★★★★ NEW: TEACHER LANGUAGE SWITCH ★★★★★
+function switchTeacherLanguage(lang) {
+
+    const title = document.getElementById('teacher-title');
+    const enBtn = document.getElementById('teacher-en-btn');
+    const zhBtn = document.getElementById('teacher-zh-btn');
+
+    if (lang === 'en') {
+
+        title.textContent = 'Mr. Fan Li 李帆';
+
+        document.querySelectorAll('#teacher .teacher-en')
+            .forEach(el => el.style.display = '');
+
+        document.querySelectorAll('#teacher .teacher-zh')
+            .forEach(el => el.style.display = 'none');
+
+        enBtn.classList.add('active');
+        zhBtn.classList.remove('active');
+
+    } else {
+
+        title.textContent = '李帆老师 Mr. Fan Li';
+
+        document.querySelectorAll('#teacher .teacher-en')
+            .forEach(el => el.style.display = 'none');
+
+        document.querySelectorAll('#teacher .teacher-zh')
+            .forEach(el => el.style.display = '');
+
+        enBtn.classList.remove('active');
+        zhBtn.classList.add('active');
+    }
+}
+
+
 
         // Initialize quote on page load
         document.addEventListener('DOMContentLoaded', function() {
